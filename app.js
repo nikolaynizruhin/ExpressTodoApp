@@ -8,6 +8,8 @@ var session = require('express-session');
 
 var routes = require('./routes/index');
 var login = require('./routes/login');
+var logout = require('./routes/logout');
+var tasks = require('./routes/tasks');
 
 var app = express();
 
@@ -33,8 +35,12 @@ app.use(session({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(require('./middleware/loadUser'));
+
 app.use('/', routes);
 app.use('/login', login);
+app.use('/logout', logout);
+app.use('/tasks', tasks);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

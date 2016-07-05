@@ -13,12 +13,9 @@ router.post('/', function(req, res, next) {
   var password = req.body.password;
 
   User.authorize(username, password, function(err, user) {
-    if (err) {
-      next(err);
-    } else {
-      console.log(user);
-      res.end(user.username);
-    }
+    if (err) return next(err);
+    req.session.user = user._id;
+    res.send({});
   });
 });
 

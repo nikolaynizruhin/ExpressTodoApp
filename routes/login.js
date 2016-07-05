@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   res.render('login', { title: 'Login' });
 });
 
-/* POST login page. */
+/* POST authorize login. */
 router.post('/', function(req, res, next) {
   var username = req.body.username;
   var password = req.body.password;

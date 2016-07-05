@@ -4,16 +4,29 @@
   <h1>Tasks</h1>
   <p><%=user.username%> tasks:</p>
   <% if (tasks) { %>
-    <ul>
+    <ol>
     <% for(var i=0; i<tasks.length; i++) {%>
-       <li><%= tasks[i].content %></li>
+       <li><%= tasks[i].content %> <span data-id="<%= tasks[i]._id %>" class="glyphicon glyphicon-trash" aria-hidden="true"></span></li>
     <% } %>
-    </ul>
+    </ol>
   <% } %>
   <form class="form-inline" action="/task" method="POST">
     <div class="form-group">
-      <input type="text" class="form-control" id="exampleInputTask2" placeholder="Your task" required>
+      <input type="text" class="form-control" id="exampleInputTask2" placeholder="Your task" name="task" required>
     </div>
     <button type="submit" class="btn btn-default">Add</button>
   </form>
 </div>
+
+<script>
+  $('span.glyphicon-trash').click(function() {
+    var taskId = $(this).data('id');
+    $.ajax({
+      url: '/task?' + $.param({"taskId": taskId}),
+      type: 'DELETE',
+      success: function(result) {
+        window.location.href = "/tasks";
+      }
+    });
+  });
+</script>

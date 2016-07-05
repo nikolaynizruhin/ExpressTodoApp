@@ -22,24 +22,24 @@
 
 <script>
   $(document.forms['login-form']).on('submit', function() {
-  	var form = $(this);
+    var form = $(this);
 
-  	$.ajax({
-  	  url: "/login",
-  	  data: form.serialize(),
-  	  method: "POST",
-  	  complete: function() {
-  	  
-  	  },
-  	  statusCode: {
-  	    200: function() {
-  	      window.location.href = "/tasks";
-  	    },
-  	    403: function(jqXHR) {
-  	      $( document.forms['login-form'] ).append( '<div class="alert alert-danger col-sm-offset-2 col-sm-10" role="alert">' + jqXHR.responseText + '</div>' );
-  	    }
-  	  }
-  	});
+    $.ajax({
+      url: "/login",
+      data: form.serialize(),
+      method: "POST",
+      complete: function() {
+      
+      },
+      statusCode: {
+        200: function() {
+          window.location.href = "/tasks";
+        },
+        403: function(jqXHR) {
+          $( document.forms['login-form'] ).append( '<div class="alert alert-danger col-sm-offset-2 col-sm-10" role="alert">' + jqXHR.responseText + '</div>' );
+        }
+      }
+    });
     return false;
   });
 </script>

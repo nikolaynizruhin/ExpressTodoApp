@@ -1,2 +1,2 @@
-# Newboston
-Basic express app with auth
+# Express.js todo app
+Basic express todo app with auth
